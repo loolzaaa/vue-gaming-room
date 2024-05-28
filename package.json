@@ -1,0 +1,12 @@
+{
+  "name": "@loolzaaa/vue-gaming-room",
+  "version": "0.1.0",
+  "description": "Vue Gaming Room",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./utils": "./lib/utils.js"
+  },
+  "author": "loolzaaa",
+  "license": "MIT"
+}
