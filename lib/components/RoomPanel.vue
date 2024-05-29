@@ -22,7 +22,7 @@ const props = defineProps({
 function exitGame() {
   let exit = confirm('Are you sure you want to exit?')
   if (exit) {
-    window.location.href = import.meta.env.BASE_URL
+    window.location.href = process.env.VGR_BASE || '/'
   }
 }
 
