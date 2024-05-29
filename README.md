@@ -87,7 +87,7 @@ You need to install SASS to changing main colors of Vue Gaming Library:
 npm i sass -D
 ```
 
-After that, you can create some `style.scss` in assets folder change color variables:
+After that, you can create some `style.scss` in assets folder and change color variables:
 ```scss
 // Use all component styles from library
 @use '@loolzaaa/vue-gaming-room/style';
