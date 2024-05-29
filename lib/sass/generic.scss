@@ -1,0 +1,33 @@
+@use "./variables" as vars;
+
+:root {
+  @include vars.register-many(
+    (
+      "app-text-color": #{vars.$text-color},
+      "app-color20": #{vars.$main-color}33,
+      "app-color40": #{vars.$main-color}66,
+      "app-color60": #{vars.$main-color}99,
+      "app-color80": #{vars.$main-color}cc,
+    ),
+    "main-"
+  );
+  @include vars.register-one(
+    "app-color", 
+    #{vars.$main-color}, 
+    "main-"
+  );
+  @include vars.register-many(
+    (
+      "app-color20": #{vars.$dark-color}33,
+      "app-color40": #{vars.$dark-color}66,
+      "app-color60": #{vars.$dark-color}99,
+      "app-color80": #{vars.$dark-color}cc,
+    ),
+    "dark-"
+  );
+  @include vars.register-one(
+    "app-color", 
+    #{vars.$dark-color}, 
+    "dark-"
+  );
+}

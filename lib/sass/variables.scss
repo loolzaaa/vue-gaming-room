@@ -1,0 +1,33 @@
+@use "sass:color";
+
+$text-color: #e7e7e7 !default;
+$main-color: #58d3c9 !default;
+$dark-color: #143532 !default;
+
+// Output: --prefix-name-suffix
+@function buildVarName($name, $prefix: "", $suffix: "") {
+  @return "--#{$prefix}#{$name}#{$suffix}";
+}
+
+// Output: --prefix-name-suffix: value
+@mixin register-one($name, $value, $prefix: "", $suffix: "") {
+  $varName: buildVarName($name, $prefix, $suffix);
+  #{$varName}: $value;
+}
+
+// See register-one
+@mixin register-many($vars, $prefix: "", $suffix: "") {
+  @each $name, $value in $vars {
+    @include register-one($name, $value, $prefix);
+  }
+}
+
+// #ff23ff -> --prefix-name-rgb: 255, 35, 255
+@mixin register-rgb($name, $value, $prefix: "") {
+  @include register-one(
+    $name,
+    (red($value), green($value), blue($value)),
+    $prefix,
+    "-rgb"
+  );
+}

@@ -87,26 +87,3 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
-
-:root {
-  --main-app-text-color: #e7e7e7;
-  --main-app-color20: #b577b533;
-  --main-app-color40: #b577b566;
-  --main-app-color60: #b577b599;
-  --main-app-color80: #b577b5cc;
-  --main-app-color: #b577b5;
-  --dark-app-color20: #35223333;
-  --dark-app-color40: #35223366;
-  --dark-app-color60: #35223399;
-  --dark-app-color80: #352233cc;
-  --dark-app-color: #352233;
-}
-
-@keyframes confirmation {
-  from {
-    background-position: 100%;
-  }
-  to {
-    background-position: 0%;
-  }
-}

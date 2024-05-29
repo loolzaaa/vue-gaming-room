@@ -1,13 +1,17 @@
 {
   "name": "@loolzaaa/vue-gaming-room",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Vue Gaming Room",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": "./dist/main.js",
     "./utils": "./dist/utils.js",
-    "./style": "./dist/style.css"
+    "./style": "./dist/style.css",
+    "./sass": "./lib/sass/_index.scss",
+    "./sass/*": "./lib/sass/*.scss"
   },
   "scripts": {
     "dev": "vite",
@@ -17,15 +21,16 @@
   "author": "loolzaaa",
   "license": "MIT",
   "peerDependencies": {
-    "vue": "^3.4.21",
+    "axios": "^1.6.8",
     "pinia": "^2.1.7",
-    "axios": "^1.6.8"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.2.0",
-    "vue": "^3.4.21",
+    "axios": "^1.6.8",
     "pinia": "^2.1.7",
-    "axios": "^1.6.8"
+    "sass": "^1.77.2",
+    "vite": "^5.2.0",
+    "vue": "^3.4.21"
   }
 }
