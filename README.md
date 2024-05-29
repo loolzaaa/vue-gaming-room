@@ -99,3 +99,10 @@ After that, you can create some `style.scss` in assets folder and change color v
 );
 @use '@loolzaaa/vue-gaming-room/sass';
 ```
+
+Finally, import created `style.scss` in app entry point:
+```diff
+// main.js
+- import '@loolzaaa/vue-gaming-room/style'
++ import './assets/main.scss'
+```
