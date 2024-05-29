@@ -46,7 +46,8 @@ function restartGame() {
     >
       Перезапуск
     </span>
-    <span class="room-panel__item is-grow is-right">Наблюдатели: {{ props.spectatorsCount }}</span>
+    <span class="room_panel__divider"></span>
+    <span class="room-panel__item is-right">Наблюдатели: {{ props.spectatorsCount }}</span>
   </div>
 </template>
 
@@ -79,10 +80,10 @@ function restartGame() {
 .room-panel__item:hover {
   color: var(--main-app-color);
 }
-.room-panel__item.is-grow {
-  flex-grow: 1;
-}
 .room-panel__item.is-right {
   text-align: right;
+}
+.room_panel__divider {
+  flex-grow: 1;
 }
 </style>
