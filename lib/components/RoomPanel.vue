@@ -34,6 +34,14 @@ function restartGame() {
     })
   }
 }
+
+function showSpectators() {
+  axios.get(`/room/${store.roomCode}/spectators`)
+    .then((resp) => {
+      let members = resp.data.map((el) => el.nickname).join('\n')
+      alert(members)
+    })
+}
 </script>
 
 <template>
@@ -47,7 +55,7 @@ function restartGame() {
       Перезапуск
     </span>
     <span class="room_panel__divider"></span>
-    <span class="room-panel__item is-right">Наблюдатели: {{ props.spectatorsCount }}</span>
+    <span @click="showSpectators" class="room-panel__item is-right">Наблюдатели: {{ props.spectatorsCount }}</span>
   </div>
 </template>
 
