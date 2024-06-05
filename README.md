@@ -40,10 +40,19 @@ import RoomMain from '@/components/RoomMain.vue'
 
 // REQUIRED: This is your room background
 import bgImg from '@/assets/bg.jpeg'
+
+// OPTIONAL: Fine-tune background styles
+const bgStyles = {
+  position: '52% 0',
+  opacity: 0.75,
+  color: '#000'
+}
 </script>
 
 <template>
-  <GamingRoom :bgImg="bgImg" :roomComp="RoomMain" />
+  <GamingRoom :bgImg="bgImg" :roomComp="RoomMain" :bgStyles="bgStyles" >
+    <!-- <div class="logo">Some logo for game</div> -->
+  </GamingRoom>
 </template>
 ```
 - Place some favicon to public folder
