@@ -1,6 +1,6 @@
 {
   "name": "@loolzaaa/vue-gaming-room",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A basic platform for creating web-based games with a room concept based on Vue",
   "keywords": [
     "vite",
