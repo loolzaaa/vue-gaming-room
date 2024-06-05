@@ -55,7 +55,7 @@ if (location.hash && location.hash.length === 5) {
 
 <template>
   <div class="main-menu__container">
-    <!-- <div class="main-menu__logo"></div> -->
+    <slot></slot>
     <div class="main-menu">
       <div class="main-menu__input">
         <label for="nickname">Введите никнейм</label>
@@ -76,6 +76,7 @@ if (location.hash && location.hash.length === 5) {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-content: center;
   align-items: center;
   justify-content: center;

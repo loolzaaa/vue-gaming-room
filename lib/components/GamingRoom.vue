@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import EnterView from './EnterView.vue'
 import RoomView from './RoomView.vue'
@@ -11,12 +11,25 @@ const props = defineProps({
   roomComp: {
     type: Object,
     required: true
+  },
+  bgStyles: {
+    type: Object,
+    default: {}
   }
 })
 
 const showRoomView = ref(false)
 const wsToken = ref(null)
 const gameStarted = ref(false)
+
+const processBgStyles = computed(() => {
+  return {
+    '--bgPosition': props.bgStyles.position ? props.bgStyles.position : '0 0',
+    '--bgOpacity': props.bgStyles.opacity ? props.bgStyles.opacity : 0.4,
+    '--bgColor': props.bgStyles.color ? props.bgStyles.color : '#000',
+    backgroundImage: 'url(' + props.bgImg + ')',
+  }
+})
 
 function updateRoomData(data) {
   wsToken.value = data.wsToken
@@ -26,8 +39,10 @@ function updateRoomData(data) {
 </script>
 
 <template>
-  <div class="bg" :style="{ backgroundImage: 'url(' + bgImg + ')' }">
-    <EnterView v-if="!showRoomView" @update-room-data="updateRoomData" />
+  <div class="bg" :style="processBgStyles">
+    <EnterView v-if="!showRoomView" @update-room-data="updateRoomData">
+      <slot></slot>
+    </EnterView>
     <RoomView v-else :wsToken="wsToken" :gameStartedProp="gameStarted" v-slot="viewProps">
       <component
         :is="props.roomComp"
@@ -52,14 +67,14 @@ function updateRoomData(data) {
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 22.5% 0;
+  background-position: var(--bgPosition);
   background-attachment: fixed;
 }
 .bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.4;
-  background-color: #000;
+  opacity: var(--bgOpacity);
+  background-color: var(--bgColor);
 }
 </style>
