@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRoomStore } from '../store/room'
 
+import CommonModal from './CommonModal.vue'
+
 const store = useRoomStore()
 
 const props = defineProps({
@@ -42,6 +44,25 @@ function exitGame() {
   if (exit) {
     window.location.href = env.VGR_BASE
   }
+}
+
+const isSettingsShow = ref(false)
+function showSettings() {
+  isSettingsShow.value = true
+}
+function updateSettings() {
+  if (!store.gameSettings) {
+    return
+  }
+  let msg = {
+    event: 'UPDATE_SETTINGS',
+    data: {
+      code: store.roomCode,
+      settings: store.gameSettings,
+    }
+  }
+  store.webSocket.send(JSON.stringify(msg))
+  isSettingsShow.value = false
 }
 
 function restartGame() {
@@ -99,6 +120,22 @@ function showSpectators() {
       Наблюдатели: {{ props.spectatorsCount }}
     </span>
   </div>
+  <CommonModal v-if="isSettingsShow" @close="isSettingsShow = false">
+    <template #header>
+      <div>Настройки</div>
+    </template>
+    <component :is="settingsComp" :updateSettingsFn="updateSettings" />
+    <template #footer>
+      <div style="display: flex; justify-content: flex-end;">
+        <button
+          class="save-settings__btn" 
+          @click="updateSettings"
+        >
+          Сохранить
+        </button>
+      </div>
+    </template>
+  </CommonModal>
 </template>
 
 <style scoped>
@@ -147,5 +184,16 @@ function showSpectators() {
 }
 .room-panel__item:hover > .icon {
   fill: var(--main-app-color);
+}
+.save-settings__btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: var(--main-app-text-color);
+  cursor: pointer;
+  background-color: var(--dark-app-color);
+}
+.save-settings__btn:hover {
+  background-color: var(--main-app-color);
 }
 </style>
