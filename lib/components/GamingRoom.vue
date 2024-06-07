@@ -8,14 +8,26 @@ const props = defineProps({
   bgImg: {
     required: true
   },
+  bgStyles: {
+    type: Object,
+    default: {}
+  },
   roomComp: {
     type: Object,
     required: true
   },
-  bgStyles: {
+  settingsComp: {
     type: Object,
-    default: {}
-  }
+    required: false
+  },
+  rulesLink: {
+    type: String,
+    required: false
+  },
+  rulesComponent: {
+    type: Object,
+    required: false
+  },
 })
 
 const showRoomView = ref(false)
@@ -43,7 +55,14 @@ function updateRoomData(data) {
     <EnterView v-if="!showRoomView" @update-room-data="updateRoomData">
       <slot></slot>
     </EnterView>
-    <RoomView v-else :wsToken="wsToken" :gameStartedProp="gameStarted" v-slot="viewProps">
+    <RoomView 
+      v-else 
+      :wsToken="wsToken" 
+      :gameStartedProp="gameStarted" 
+      :rulesLink="rulesLink"
+      :rulesComponent="rulesComponent"
+      :settingsComp="settingsComp"
+      v-slot="viewProps">
       <component
         :is="props.roomComp"
         :members="viewProps.members"

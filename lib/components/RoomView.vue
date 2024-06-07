@@ -15,7 +15,19 @@ const props = defineProps({
   gameStartedProp: {
     type: Boolean,
     required: true
-  }
+  },
+  settingsComp: {
+    type: Object,
+    required: false
+  },
+  rulesLink: {
+    type: String,
+    required: false
+  },
+  rulesComponent: {
+    type: Object,
+    required: false
+  },
 })
 
 // Свойства комнаты
@@ -70,6 +82,9 @@ store.connectToWs(props.wsToken)
 <template>
   <div class="room-container">
     <RoomPanel
+      :settingsComp="settingsComp"
+      :rulesLink="rulesLink"
+      :rulesComponent="rulesComponent"
       :gameStarted="gameStarted"
       :spectatorsCount="spectatorsCount"
       :currentMember="currentMember"
