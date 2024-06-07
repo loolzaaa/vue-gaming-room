@@ -109,6 +109,7 @@ function showSpectators() {
   padding: 2px 16px;
   width: 100%;
   font-size: 1rem;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: var(--main-app-text-color);
   display: flex;
   flex-wrap: nowrap;

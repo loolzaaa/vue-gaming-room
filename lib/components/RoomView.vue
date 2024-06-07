@@ -111,6 +111,7 @@ store.connectToWs(props.wsToken)
   height: 100%;
   min-height: 100vh;
   color: var(--main-app-text-color);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 @media only screen and (max-width: 1024px) {
   .room-container {
