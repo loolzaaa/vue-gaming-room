@@ -41,16 +41,27 @@ import RoomMain from '@/components/RoomMain.vue'
 // REQUIRED: This is your room background
 import bgImg from '@/assets/bg.jpeg'
 
+// OPTIONAL: This is ypur settings component implementation
+import SettingsMain from '@/components/SettingsMain.vue'
+
 // OPTIONAL: Fine-tune background styles
 const bgStyles = {
   position: '52% 0',
   opacity: 0.75,
   color: '#000'
 }
+
+// OPTIONAL: You can provide link (precedence) or component with game rules
 </script>
 
 <template>
-  <GamingRoom :bgImg="bgImg" :roomComp="RoomMain" :bgStyles="bgStyles" >
+  <GamingRoom
+    :bgImg="bgImg"
+    :bgStyles="bgStyles"
+    :roomComp="RoomMain"
+    :settingsComp="SettingsMain"
+    rulesLink="/rules.pdf"
+  >
     <!-- <div class="logo">Some logo for game</div> -->
   </GamingRoom>
 </template>
@@ -86,8 +97,11 @@ console.log(store.roomCode) // Example: AFRG
 |`nickname`|Current player nickname|
 |`userId`|Current player user id (used for game state receiving from game server)|
 |`roomCode`|Current game room code|
+|`gameSettings`|Current game settings|
 |`webSocket`|WebSocket instance for sending some events|
 |`addWsEventHandler`|Function for registering event handlers from game server via WebSocket|
+
+**IMPORTANT!** If you provide settings component, you **must** set initial value of game settings in state manager.
 
 ### Change theme colors
 
