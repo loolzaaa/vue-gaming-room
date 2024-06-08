@@ -34,6 +34,15 @@ const props = defineProps({
   }
 })
 
+let rulesHref
+if (props.rulesLink) {
+  let link = props.rulesLink
+  if (link.startsWith('/')) {
+    link = link.substring(1)
+  }
+  rulesHref = env.VGR_BASE + link
+}
+
 const icons = import.meta.glob(`../assets/*-icon.svg`, { import: 'default', query: '?raw', eager: true })
 function icon(name) {
   return icons[`../assets/${name}-icon.svg`]
@@ -92,7 +101,7 @@ function showSpectators() {
     <span v-if="props.rulesLink || props.rulesComponent" class="room-panel__item">
       <a
         v-if="props.rulesLink"
-        :href="props.rulesLink" 
+        :href="rulesHref" 
         target="_blank" 
         rel="noopener noreferrer">
         <i v-html="icon('rules')" class="icon"></i>
