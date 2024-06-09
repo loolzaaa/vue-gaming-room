@@ -36,7 +36,7 @@ const gameStarted = ref(props.gameStartedProp)
 const spectatorsCount = ref(0)
 const members = ref([])
 
-const currentMember = computed(() => members.value.find((el) => el.userId === store.userId))
+const currentMember = computed(() => members.value.find((el) => el.nickname === store.nickname))
 
 // Данные для новой игры
 const newGameData = ref(null)
