@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import axios from 'axios'
 import { useRoomStore } from '../store/room'
 
@@ -34,6 +34,8 @@ const props = defineProps({
   }
 })
 
+const showSettingsIcon = computed(() => store.gameSettings && props.settingsComp && props.currentMember?.admin)
+
 let rulesHref
 if (props.rulesLink) {
   let link = props.rulesLink
@@ -60,9 +62,6 @@ function showSettings() {
   isSettingsShow.value = true
 }
 function updateSettings() {
-  if (!store.gameSettings) {
-    return
-  }
   let msg = {
     event: 'UPDATE_SETTINGS',
     data: {
@@ -111,7 +110,7 @@ function showSpectators() {
       </component>
     </span>
     <span 
-      v-if="props.settingsComp && props.currentMember?.admin" 
+      v-if="showSettingsIcon" 
       @click="showSettings"
       class="room-panel__item"
     >
@@ -133,7 +132,7 @@ function showSpectators() {
     <template #header>
       <div>Настройки</div>
     </template>
-    <component :is="settingsComp" :updateSettingsFn="updateSettings" />
+    <component :is="settingsComp" />
     <template #footer>
       <div style="display: flex; justify-content: flex-end;">
         <button
