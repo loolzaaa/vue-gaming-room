@@ -17,5 +17,16 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue', 'axios', 'pinia']
     }
+  },
+  server: {
+    proxy: {
+      '/room': 'http://localhost:8080',
+      '/game-ws': {
+        target: 'ws://localhost:8080',
+        changeOrigin: true,
+        ws: true
+      }
+    }
+  },
   }
 })
