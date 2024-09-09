@@ -47,10 +47,14 @@ function joinToRoom() {
   })
 }
 
-if (location.hash && location.hash.length === 5) {
-  store.roomCode = location.hash.substring(1).toUpperCase()
-  joinToRoom()
-}
+axios.get('/game/info').then((resp) => {
+  store.initGameInfo(resp.data)
+  
+  if (location.hash && location.hash.length === 5) {
+    store.roomCode = location.hash.substring(1).toUpperCase()
+    joinToRoom()
+  }
+})
 </script>
 
 <template>
