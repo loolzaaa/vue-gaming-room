@@ -28,5 +28,7 @@ export default defineConfig({
       }
     }
   },
-  }
+  define: {
+    'env.VGR_BASE': 'import.meta.env.BASE_URL'
+  },
 })
