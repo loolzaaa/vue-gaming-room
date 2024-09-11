@@ -17,13 +17,7 @@ function createRoom() {
     params += `&userId=${store.userId}`
   }
   axios.post(`/room/create?${params}`).then((resp) => {
-    store.updateRoomData(resp.data)
-    emit('updateRoomData', { wsToken: resp.data.wsToken, gameStarted: resp.data.gameStarted })
-    history.pushState(
-      '',
-      document.title,
-      window.location.pathname + window.location.search + '#' + store.roomCode
-    )
+    roomDataHandler(resp.data)
   })
 }
 
@@ -36,15 +30,23 @@ function joinToRoom() {
     console.log('Nickname must be at least 1 character')
     return
   }
+  store.roomCode = store.roomCode.toUpperCase()
   store.nickname = store.nickname.trim()
   let params = `nickname=${store.nickname}`
   if (store.userId) {
     params += `&userId=${store.userId}`
   }
   axios.post(`/room/join/${store.roomCode}?${params}`).then((resp) => {
-    store.updateRoomData(resp.data)
-    emit('updateRoomData', { wsToken: resp.data.wsToken, gameStarted: resp.data.gameStarted })
+    roomDataHandler(resp.data)
   })
+}
+
+function roomDataHandler(roomData) {
+  store.updateRoomData(roomData)
+  emit('updateRoomData', { wsToken: roomData.wsToken, gameStarted: roomData.gameStarted })
+  const url = new URL(location)
+  url.hash = store.roomCode
+  history.pushState({}, '', url)
 }
 
 axios.get('/game/info').then((resp) => {
